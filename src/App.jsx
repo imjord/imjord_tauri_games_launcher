@@ -71,7 +71,7 @@ function App() {
 
         return (
           <div key={index}>
-            <p>{game}</p>
+            <p>{gameName}</p>
             <button onClick={() => executeFile(game)}>Play</button>
             <button onClick={() => removeGame(game)}>Remove</button>
           </div>

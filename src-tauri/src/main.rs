@@ -1,18 +1,14 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use rfd::FileDialog;
-use tauri::CustomMenuItem;
-use tauri::Manager;
+// use tauri::CustomMenuItem;
 use std::process::Command;
 use std::fs;
-use std::io::prelude::*;
-use std::path::Path;
 use std::fs::OpenOptions;
 use std::io::Write;
 
 // Define the name of the text file that will store the paths of the games
-const GAME_PATH_STORAGE: &str = "game_paths.txt";
-
+const GAME_PATH_STORAGE: &str = "../game_paths.txt";
 // A function that reads the game paths from the text file and returns them as a string
 #[tauri::command]
 fn get_games() -> Result<String, String> {
@@ -44,6 +40,8 @@ fn get_file_path() -> Result<String, String> {
                 .append(true)
                 .open(GAME_PATH_STORAGE)
                 .map_err(|e| format!("Failed to open file: {}", e))?;
+            // write a \n line 
+            write!(file, "\n").map_err(|e| format!("Failed to write to file: {}", e))?;
             // Write the path of the new game to the file
             writeln!(file, "{}", file_path_str)
                 .map_err(|e| format!("Failed to write to file: {}", e))?;
@@ -102,6 +100,12 @@ fn execute_file(file_path: String) -> Result<String, String> {
 
 
 fn main() {
+    // Create the file if it does not exist
+    OpenOptions::new()
+        .write(true)
+        .create(true)
+        .open(GAME_PATH_STORAGE)
+        .expect("Failed to create file");
     tauri::Builder::default()
         // commands
         .invoke_handler(tauri::generate_handler![get_games, remove_game, execute_file,get_file_path])

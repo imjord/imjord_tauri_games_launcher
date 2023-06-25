@@ -1,7 +1,7 @@
 [package]
 name = "imjord_tauri_games_launcher"
 version = "0.0.0"
-description = "A Tauri App"
+description = "imjord_tauri_games_launcher"
 authors = ["you"]
 license = ""
 repository = ""
