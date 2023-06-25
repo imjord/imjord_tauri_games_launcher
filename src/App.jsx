@@ -93,7 +93,7 @@ function App() {
 
       <div className="title">
         <div>
-          <h1>Favorite Games Launcher(made with rust)</h1>
+          <h1>Favorite Games Launcher</h1>
         </div>
         <div>
           <button onClick={openFileDialog}>Add Game</button>
