@@ -86,18 +86,16 @@ WINDOWS ONLY
         ```sh
         git clone https://github.com/imjord/imjord_tauri_games_launcher.git
         ```
-  2. Install NPM packages in both client and server folders
+  2. Install NPM packages in root folder
         ```sh
         npm install
         ```
-  3. Create a .env file in the server folder and add your own MongoDB URI
+  3. Run command npm run tauri build to create application.
         ```sh
-        MONGODB_URI=YOUR_OWN_MONGODB_URI
+        npm run tauri build
         ```
-  4. Run the start commands in both client and server folders (commands are in the package.json files).
-        ```sh
-        npm start / npm run dev
-        ```
+  4. Navigate into src-tauri and target folder then releases and the application should be located there.
+  
   5. Enjoy! made with <3 by imjord
   <p align="right">(<a href="#readme-top">back to top</a>)</p>
     
