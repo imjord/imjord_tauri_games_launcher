@@ -9,6 +9,28 @@ use std::io::Write;
 
 // Define the name of the text file that will store the paths of the games
 const GAME_PATH_STORAGE: &str = "../game_paths.txt";
+const DISCLAIMER_SETTINGS: &str = "../settings.txt";
+
+
+#[tauri::command]
+fn disclaimer() {
+ // create disclaimer file
+ OpenOptions::new()
+ .write(true)
+ .create(true)
+ .open(DISCLAIMER_SETTINGS)
+ .expect("Failed to create settings file");
+}
+
+
+#[tauri::command]
+fn get_disclaimer() -> Result<String, String> {
+    let contents = fs::read_to_string(DISCLAIMER_SETTINGS)
+    .map_err(|e| format!("Failed to read from file: {}", e))?;
+    Ok(contents)
+}
+
+
 // A function that reads the game paths from the text file and returns them as a string
 #[tauri::command]
 fn get_games() -> Result<String, String> {
@@ -100,15 +122,16 @@ fn execute_file(file_path: String) -> Result<String, String> {
 
 
 fn main() {
-    // Create the file if it does not exist
+    // Create the file if it does not exist on main launch
     OpenOptions::new()
         .write(true)
         .create(true)
         .open(GAME_PATH_STORAGE)
         .expect("Failed to create file");
+   
     tauri::Builder::default()
         // commands
-        .invoke_handler(tauri::generate_handler![get_games, remove_game, execute_file,get_file_path])
+        .invoke_handler(tauri::generate_handler![get_games, disclaimer, get_disclaimer, remove_game, execute_file,get_file_path])
         // run application.
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

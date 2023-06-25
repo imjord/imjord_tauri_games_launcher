@@ -3,7 +3,9 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   color: #0f0f0f;
   background-color: #f6f6f6;
 
@@ -16,15 +18,46 @@
 
 .container {
   margin: 0;
-  padding-top: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: left;
 }
 
+.disclaimer {
+  margin: 12px 10px;
+
+  /* background-color: rgb(58, 80, 58); */
+  background-color: #612727;
+  border-radius: 2px;
+}
+.inner-disclaimer {
+  position: relative;
+
+  background-color: #0f0f0f;
+  opacity: 0.7;
+  margin: 5px 15px;
+  padding: 3px;
+  border-radius: 7px;
+
+  text-align: center;
+}
+.x {
+  position: absolute;
+  margin-right: 10px;
+  padding: 5px;
+  top: 0;
+  right: 0;
+}
+
+.x:hover {
+  cursor: pointer;
+  color: rgb(168, 64, 64);
+}
 .title {
   display: flex;
+  margin-top: 10px;
+  align-items: center;
   justify-content: space-around;
 }
 

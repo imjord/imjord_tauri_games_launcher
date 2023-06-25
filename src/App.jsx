@@ -9,6 +9,7 @@ function App() {
   const [file, setFile] = useState("");
   const [err, setErr] = useState("");
   const [files, setFiles] = useState([]);
+  const [disclaimer, setDisclaimer] = useState(true);
 
   // Fetches the games and sets the state
   const fetchGames = async () => {
@@ -20,10 +21,6 @@ function App() {
       setErr(err);
     }
   };
-
-  useEffect(() => {
-    fetchGames();
-  }, []);
 
   async function openFileDialog() {
     try {
@@ -52,8 +49,45 @@ function App() {
     }
   }
 
+  async function createDisclaimer() {
+    try {
+      await invoke("disclaimer");
+      setDisclaimer(false);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function checkDisclaimer() {
+    try {
+      await invoke("get_disclaimer");
+      setDisclaimer(false);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  useEffect(() => {
+    fetchGames();
+    checkDisclaimer();
+  }, []);
+
   return (
     <div className="container">
+      {disclaimer ? (
+        <div className="disclaimer">
+          <div className="inner-disclaimer">
+            <p>
+              Please be aware multiplayers games will launch but they wont
+              connect to their respective launchers services. :)
+            </p>
+            <span className="x" onClick={() => createDisclaimer()}>
+              [dont show again[x]]
+            </span>
+          </div>
+        </div>
+      ) : null}
+
       <div className="title">
         <div>
           <h1>Favorite Games Launcher(made with rust)</h1>
