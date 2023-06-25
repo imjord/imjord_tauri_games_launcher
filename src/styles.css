@@ -43,16 +43,25 @@
   text-align: center;
 }
 .x {
-  position: absolute;
-  margin-right: 10px;
-  padding: 5px;
-  top: 0;
-  right: 0;
+  display: flex;
+  margin-right: 15px;
+  justify-content: flex-end;
+
+  padding: 0;
 }
 
-.x:hover {
+.x span {
+  font-size: 13px;
+}
+
+.x span:hover {
   cursor: pointer;
+  text-decoration: underline;
   color: rgb(168, 64, 64);
+}
+
+.disclaimer-p {
+  font-size: 14px;
 }
 .title {
   display: flex;
@@ -61,39 +70,73 @@
   justify-content: space-around;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: 0.75s;
-}
-
-.logo.tauri:hover {
-  filter: drop-shadow(0 0 2em #ffffff);
-}
-
 .row {
   display: flex;
   justify-content: center;
 }
 
-a {
-  font-weight: 500;
-  color: #ffffff;
-  text-decoration: inherit;
+.game-list {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
 }
 
-a:hover {
-  color: #ffffff;
+.list {
+  display: flex;
+  flex-direction: column;
 }
 
+.list-content {
+  display: flex;
+  margin: 15px 0px;
+  border-bottom: 2px solid rgb(114, 113, 113);
+  justify-content: space-between;
+  align-items: center;
+  background-color: #383838;
+  padding: 10px;
+  width: 100%;
+}
+
+.list-content p {
+  font-size: 26px;
+}
+
+.list-btns {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-btns button {
+  margin-top: 5px;
+}
 h1 {
   text-align: center;
 }
 
+/* SCROLLBAR  */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #2f2f2f;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 input,
 button {
-  border-radius: 8px;
+  border-radius: 4px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -124,6 +167,19 @@ button {
 
 #greet-input {
   margin-right: 5px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 0px;
+  background-color: rgb(87, 87, 87);
+  color: rgb(0, 0, 0);
+  text-align: center;
+  opacity: 0.2;
+  z-index: -1;
 }
 
 @media (prefers-color-scheme: dark) {

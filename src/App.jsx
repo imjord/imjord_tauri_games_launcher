@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
+import Footer from "./component/Footer";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -77,13 +78,15 @@ function App() {
       {disclaimer ? (
         <div className="disclaimer">
           <div className="inner-disclaimer">
-            <p>
-              Please be aware multiplayers games will launch but they wont
-              connect to their respective launchers services. :)
-            </p>
-            <span className="x" onClick={() => createDisclaimer()}>
-              [dont show again[x]]
-            </span>
+            <div className="x">
+              <span onClick={() => createDisclaimer()}>[dont show again]</span>
+            </div>
+            <div className="disclaimer-p">
+              <p>
+                Please be aware multiplayers games will launch but they wont
+                connect to their respective launchers services.
+              </p>
+            </div>
           </div>
         </div>
       ) : null}
@@ -96,22 +99,27 @@ function App() {
           <button onClick={openFileDialog}>Add Game</button>
         </div>
       </div>
+      <div className="game-list">
+        <div></div>
+        <div className="list">
+          {files.map((game, index) => {
+            const gamePathParts = game.split("\\");
+            const gameName =
+              gamePathParts[gamePathParts.length - 1].split(".exe")[0];
 
-      <h2>Game List</h2>
-      {files.map((game, index) => {
-        const gamePathParts = game.split("\\");
-        const gameName =
-          gamePathParts[gamePathParts.length - 1].split(".exe")[0];
-
-        return (
-          <div key={index}>
-            <p>{gameName}</p>
-            <button onClick={() => executeFile(game)}>Play</button>
-            <button onClick={() => removeGame(game)}>Remove</button>
-          </div>
-        );
-      })}
-      {err}
+            return (
+              <div key={index} className="list-content">
+                <p>{gameName}</p>
+                <div className="list-btns">
+                  <button onClick={() => executeFile(game)}>Play</button>
+                  <button onClick={() => removeGame(game)}>Remove</button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 }

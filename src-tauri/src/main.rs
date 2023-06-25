@@ -1,15 +1,24 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use rfd::FileDialog;
-// use tauri::CustomMenuItem;
+use tauri::{CustomMenuItem, Menu, MenuItem, Submenu};
 use std::process::Command;
 use std::fs;
 use std::fs::OpenOptions;
 use std::io::Write;
 
 // Define the name of the text file that will store the paths of the games
-const GAME_PATH_STORAGE: &str = "../game_paths.txt";
-const DISCLAIMER_SETTINGS: &str = "../settings.txt";
+const GAME_PATH_STORAGE: &str = "./game_paths.txt";
+const DISCLAIMER_SETTINGS: &str = "./settings.txt";
+
+// menu stuff
+// let quit = CustomMenuItem::new("quit".to_string(), "Quit");
+// let close = CustomMenuItem::new("close".to_string(), "Close");
+// let submenu = Submenu::new("File", Menu::new().add_item(quit).add_item(close));
+// let menu = Menu::new()
+//   .add_native_item(MenuItem::Copy)
+//   .add_item(CustomMenuItem::new("hide", "Hide"))
+//   .add_submenu(submenu);
 
 
 #[tauri::command]

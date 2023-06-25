@@ -32,8 +32,8 @@
         "fullscreen": false,
         "resizable": true,
         "title": "imjord_tauri_games_launcher",
-        "width": 1100,
-        "height": 1000
+        "width": 850,
+        "height": 820
       }
     ]
   }
