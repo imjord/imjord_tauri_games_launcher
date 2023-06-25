@@ -1,4 +1,4 @@
-WINDOWS ONLY
+WINDOWS ONLY FOR NOW
 
 <a name="readme-top"></a>
 
