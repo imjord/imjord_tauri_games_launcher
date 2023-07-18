@@ -103,8 +103,10 @@ BE AWARE THIS APPLICATION WILL CREATE A game_paths.txt and settings.txt IN THE R
     
   <!-- USAGE EXAMPLES -->
   ## Usage
-    
-  Launch application and add games
+
+
+Navigate to the src-tauri folder and use the command cargo doc --open for applications documantation, Used to Launch application and add games
+
   <p align="right">(<a href="#readme-top">back to top</a>)</p>
     
     
